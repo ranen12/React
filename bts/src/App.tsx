@@ -25,6 +25,11 @@ function App() {
   return (
     <div>
       <BTS members ={members} />
+      {members.map((member)=>(
+        <React.Fragment key ={member.nick}>
+          <MemberCard member ={member}></MemberCard>
+        </React.Fragment>
+        ))}
 
 
       
