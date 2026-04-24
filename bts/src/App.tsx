@@ -1,7 +1,8 @@
 import './App.css'
-import MemberCard from './component/MemberCard'
 import React from 'react'
 import type { Member } from './types/Member'
+import { MemberCard } from './component/MemberCard'
+import BTS from './component/BTS'
 
 
 
@@ -23,10 +24,10 @@ function App() {
 
   return (
     <div>
-      <MemberCard member ={members[0]}/>
-      <MemberCard member ={members[1]}/>
-      <MemberCard member ={members[2]}/>
-      <MemberCard member ={members[3]}/>
+      <BTS members ={members} />
+
+
+      
     </div>
   )
 }
