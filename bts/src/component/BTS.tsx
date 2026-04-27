@@ -16,7 +16,6 @@ function BTS({members}:BTSProps){
     const [index,setIndex] =useState<number>(0);
     const changeIndex = (newIndex:number):void =>{
         const len = members.length; //7
-
         setIndex((newIndex+len)%len)
 
     }

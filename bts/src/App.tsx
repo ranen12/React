@@ -1,6 +1,6 @@
 import './App.css'
 import React from 'react'
-import type { Member } from './types/Member'
+import type { Member } from './types/Member.ts'
 import { MemberCard } from './component/MemberCard'
 import BTS from './component/BTS'
 
@@ -24,6 +24,7 @@ function App() {
 
   return (
     <div>
+      {/* <BTS members ={members}/> */}
       <BTS members ={members} />
       {members.map((member)=>(
         <React.Fragment key ={member.nick}>
