@@ -6,7 +6,6 @@ export default function UseMemo(){
     const list =['apple','banana','grape','orange'];
 
     const filtered =useMemo(()=>{
-        console.log('필터 실행됨');
         return list.filter((item)=> item.includes(query));
     },[query]);
 

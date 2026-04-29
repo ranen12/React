@@ -7,6 +7,13 @@ import Test from './component/Test'
 import UseEffectMovie from './component/UseEffectMovie'
 import ExUseMemo from './component/ExUseMemo'
 import UseMemo from './component/UseMemo'
+import UseRefTest from './component/UseRefTest'
+import Login from './component/UseReducer2'
+import Counter from './component/UseReducerTest'
+import DarkOrLight from './component/Provider'
+import UseToggleTest from './component/UseToggleTest'
+import UseFetchTest from './component/UseFetchTest'
+
 
 
 function App() {
@@ -21,7 +28,16 @@ function App() {
     {/* <Test/> */}
     {/* <UseEffectMovie/> */}
     {/* <ExUseMemo num={1} /> */}
-    <UseMemo/>
+    {/* <UseMemo/> */}
+    {/* <UseRefTest/> */}
+    {/* <Login/>
+    <Counter/> */}
+    {/* <DarkOrLight/> */}
+    {/* <UseToggleTest/> */}
+    <UseFetchTest/>
+
+
+    
     </>
   )
 }

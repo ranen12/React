@@ -12,7 +12,7 @@ function countReducer(current:number, action:Action){
         return current -1;
     }
     return current;
-}
+}//current가 늘었는지 줄었는지 관련 코드
 
 export default function Counter(){
     const [count, dispatch]=useReducer(countReducer, 0)

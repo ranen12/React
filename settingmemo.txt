@@ -1,0 +1,15 @@
+  languageOptions: {
+      globals: globals.browser,
+    },
+    rules: {
+      'no-unused-vars':off,
+      '@typescript-eslint/no-unused-vars':'off',
+    },
+eslint.config.js
+
+
+ // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "erasableSyntaxOnly": true,
+    // "noFallthroughCasesInSwitch": true
+Config.app.json 주석처리하기
