@@ -1,42 +1,43 @@
-// import type { ApiResponse } from "../types/Book";
-// import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
+import type { ApiResponse } from "../types/Book";
 
-// //다른api도 받아올수있게 url도 받아온다.
-// export default function useFetch<T>(
-//     query:string,
-//     page:number,
-//     url:string,
-//     apiKey:string) {
-//     const [document, setDocument] =useState<T[]>([])
-//     const [isEnd,setIsEnd]=useState<boolean>(false);
-    
-//     useEffect(()=>{
-//         if(!query) return;//이거뭐지?
-//         const fetchBooks = async ()=>{
-//             try {
-//                 const encodedQuery =encodeURIComponent(query);//검색한 한글을 인코딩해서 넣어줌
-//                 const endPoint = `${url}?query=${encodedQuery}&page=${page}`
-//                 const response = await fetch(endPoint,{
-//                     headers:{apiKey},
-//                 }//fetch는 promise를반환함, response에 받아온다.
-//             });
-//             if(!response.ok){//ok는200성공코드이다. 이게 아니라면 실패한거
-//                 throw new Error(`HTTP error! status:${response.status}`)//실패코드가 뜬다
-//             } 
-//             const data: ApiResponse<Book> = await response.json()
-//             //이부분 해석과, 제네릭 이해해야함
-//             setDocument(data.documents)//타입 ApiResponse안에 documents라는 타입이 있구 거기 접근하려고 .으로 들어감
-//             setIsEnd(data.meta.is_end)
-//             }catch(err) {
-//                 console.error('검색중 오류',err)
-//             }
+export default function useFetch<T>(query: string, page: number, baseUrl: string, apiKey: string) {
+  const [document, setDocument] = useState<T[]>([]);
+  const [isEnd, setIsEnd] = useState<boolean>(false);
 
-//         };
+  useEffect(() => {
+    // 검색어가 없으면 실행하지 않음 (빈 화면 유지)
+    if (!query) return;
 
-//     fetchBooks()
-//     },[query,page,url,apiKey])
-//     return{document,}
+    const fetchBooks = async () => {
+      try {
+        const encodedQuery = encodeURIComponent(query);
+        // baseUrl에 이미 쿼리스트링이 포함되어 올 수 있으므로 구조를 단순화합니다.
+        const endPoint = `${baseUrl}?query=${encodedQuery}&page=${page}`;
 
-//     return()
+        const response = await fetch(endPoint, {
+          headers: {
+            Authorization: apiKey, // 카카오 API는 Authorization 헤더에 키를 넣어야 합니다.
+          },
+        });
 
-// }
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // T를 사용하여 어떤 타입의 데이터든 처리할 수 있게 합니다.
+        const data: ApiResponse<T> = await response.json();
+
+        setDocument(data.documents);
+        setIsEnd(data.meta.is_end);
+      } catch (err) {
+        console.error("검색 중 오류:", err);
+      }
+    };
+
+    fetchBooks();
+  }, [query, page, baseUrl, apiKey]); // 의존성 배열: 이 값들이 변할 때만 다시 실행됨
+
+  // 외부에서 사용할 변수들을 반환
+  return { document, isEnd };
+}
