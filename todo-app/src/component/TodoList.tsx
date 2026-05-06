@@ -22,9 +22,27 @@ function TodoList({todos,onUpdate,onDelete}:TodoListProps){
         //이부분 주의 ''는 빈문자열로 사용자가 아무것도 입력하지 않은 상태임. ''인 경우 그냥 todos를 보여줘, 그게 아닐경우 todos의 filter로 맞는걸 찾아서 반환
         //toLowerCase()는 대소문자구분을 없애려고넣었음
     };
+
+    const analyzeTodo =() =>{
+        const totalCount = todos.length;
+        const doneCount = todos.filter((todo)=>todo.isDone).length;
+        const notDoneCount= totalCount - doneCount;
+        return{
+            totalCount,//totalCount:totalCount,
+            doneCount,
+            notDoneCount,
+        }
+    }
+    const {totalCount, doneCount, notDoneCount} = analyzeTodo();
+    //밑에 사용하려고 씀
     return(
         <div className="TodoList">
             <h4>Todo List</h4>
+            <div>
+            <div>총갯수:{totalCount}</div>
+            <div>완료된 할일:{doneCount}</div>
+            <div>완료되지 못한 할일{notDoneCount}</div>
+            </div>
             <input
               type= "text"
               className= "searchbar"
