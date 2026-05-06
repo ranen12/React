@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import type { ApiResponse } from "../types/Book";
 
+
+//useFetch<T>인것은 useFetch엔 여러가지 데이터배열이 들어올 함수인데 어떤 타입의 배열이 들어올지 지정하지않고
+//제네릭타입으로 뒀다.
 export default function useFetch<T>(query: string, page: number, baseUrl: string, apiKey: string) {
   const [document, setDocument] = useState<T[]>([]);
   const [isEnd, setIsEnd] = useState<boolean>(false);
