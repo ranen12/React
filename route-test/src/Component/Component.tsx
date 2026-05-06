@@ -1,0 +1,48 @@
+import { Link,createBrowserRouter,RouterProvider, useParams, useSearchParams, useLocation } from "react-router-dom"
+
+
+export function Header() {
+    return(
+        <>
+       
+        <Link to ="/"> <h1>헤더</h1></Link>
+        </>
+    )
+}
+
+export function Main(){
+    return(
+        <>
+        <h3>메인페이지입니다</h3>
+        <Link to ="/product/1"><li>1번상품</li></Link>
+        <Link to ="/product/2"><li>2번상품</li></Link>
+        </>
+    )
+}
+
+export function Product() {
+    const { id } = useParams();
+    const [searchParams] = useSearchParams();
+    const q = searchParams.get('q');
+    const location = useLocation();
+    return (
+       <>
+        <h3>{id}번 상품 페이지입니다.</h3>
+        <p>검색어 q:{q}</p>
+        <p>pathname: {location.pathname}</p>
+        <p>search: {location.search}</p>
+        <p>hash: {location.hash}</p>
+        </> 
+    )
+    
+}
+
+export function NotFound() {
+    return(
+        <>
+        <h1>404 Error</h1>
+        </>
+    )
+    
+}
+
