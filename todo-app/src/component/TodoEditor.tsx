@@ -1,13 +1,17 @@
 import type React from 'react';
 import './TodoEditor.css'
 import { useRef, useState } from 'react';
+import { useContext } from 'react';
+import { TodoDispatchContext } from '../TodoContext';
 
-interface TodoEditorProps{
-    onCreate:(content:string)=>void;
-}
+// interface TodoEditorProps{
+//     onCreate:(content:string)=>void;
+// }
+//처음엔 Props로 받았는데 Context를 사용하면서 Propbs로 받는게 아닌 context에서 땡겨오는 개념이 생겼음.
 
-
-function TodoEditor({onCreate}:TodoEditorProps){
+// function TodoEditor({onCreate}:TodoEditorProps){
+function TodoEditor(){
+    const {onCreate} = useContext(TodoDispatchContext);
     const [content, setContent] =useState<string>('')
     const inputRef =useRef<HTMLInputElement>(null);
     //있는건지 검색해볼필요가있음
