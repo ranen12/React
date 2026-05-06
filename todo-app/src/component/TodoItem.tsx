@@ -8,8 +8,9 @@ import { TodoDispatchContext } from '../TodoContext';
 interface TodoItemProps{
     todo:Todo;
     // onUpdate:(targetId:number)=>void;
-    // //app부터List에보내고list에서받아온 소중한 onupdate
+    // //app부터List에보내고list에서받아온 소중한 onupdate 였었지만 Props를 안쓰면서 버렸음 
     // onDelete:(targetId:number)=>void
+    //마찬가지로 context를 사용하면서 이부분을 주석처리함
 
 }
 
