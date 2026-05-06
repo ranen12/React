@@ -132,7 +132,7 @@ function App() {
         <TodoEditor/>
         <TodoList/>
       </TodoDispatchContext.Provider>
-    </TodoStateContext.Provider>
+      </TodoStateContext.Provider>
 
       {/* {todos:todos,onCreate:onCreate,onDelete:onDelete}를 key:value가 같으니까 그냥생략했음 {{}}구조인건 value={}구조인데 그안에 객체 {}를 또 넣은개념이다.*/}
     
