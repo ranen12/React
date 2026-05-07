@@ -1,18 +1,11 @@
-import {createSlice, configureStore} from "@reduxjs/toolkit"
-
-const slice = createSlice({
-    name:'counter',
-    initialState:{value:0},
-    reducers:{
-        increase:(state)=>{
-            state.value += 1;
-        },
-        decrease:(state)=>{
-            state.value -=1;
-
-        }
-    }
-})
-
-export const {increase, decrease}=slice.actions;
-export const store = configureStore({reducer:slice.reducer});
+import { configureStore } from '@reduxjs/toolkit';
+import counterReducer from './counterslice';
+import userReducer from './userslice';
+export const store = configureStore({
+reducer: {
+counter: counterReducer,
+user: userReducer,
+},
+});
+// 타입
+export type RootState = ReturnType<typeof store.getState>;
