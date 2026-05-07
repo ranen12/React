@@ -6,15 +6,13 @@ import './App.css'
 import { store } from './store.ts'
 
 function App() {
-
-  return (
-    <Provider store = {store}>
-      <Display/>
-      <CounterA/>
-      <CounterB/>
-
-    </Provider>
-  )
+  return (<>
+    // <Provider store = {store}>
+    //   <Display/>
+    //   <CounterA/>
+    //   <CounterB/>
+    // </Provider> origin형태
+  </>)
 }
 
 export default App
