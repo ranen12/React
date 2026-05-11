@@ -1,14 +1,24 @@
 import { useRouter } from "next/router";
 import SearchBarLayout from "@/component/searchbar-layout";
 import { ReactNode } from "react";
+import { GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { fetchSales } from "@/util/fetch-sales";
+import SaleItem from "@/component/sale-item";
 
-export default function Page() {
-    const router = useRouter();
-    const query = router.query.q;
-    //서치했을때 결과를 q에 하면.q로 가는것.
+export async function getServerSideProps(context:GetServerSidePropsContext){
+    const q =context.query.q;
+    const sales =await fetchSales(q as string);
+    return {props: {sales}};
+}
+
+
+export default function Page({sales}:InferGetServerSidePropsType<typeof getServerSideProps>) {
+    
     return (
         <div>
-            <h1>검색어 :{query}</h1>
+            {sales.map((sale)=>(
+                <SaleItem key = {sale.id} {...sale}/>
+            ))}
         </div>
     );
 

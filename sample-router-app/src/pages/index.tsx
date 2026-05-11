@@ -3,8 +3,17 @@ import styles from './index.module.css'
 import SearchBarLayout from '@/component/searchbar-layout';
 import sales from '@/mock/sales.json'
 import SaleItem from '@/component/sale-item';
+import { fetchRecentSales } from '@/util/fetch-sales';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
-export default function Home() {
+export async function getStaticProps(){
+  console.log("getStaticProps");
+  const sales= await fetchRecentSales();
+  return {props:{sales:sales}};
+}
+
+
+export default function Home({sales}:InferGetStaticPropsType<typeof getStaticProps>){
   return (
     <div className={styles.title}>
         <section>
@@ -12,7 +21,7 @@ export default function Home() {
           {sales.map((sale)=>(
             <SaleItem key ={sale.id} {...sale}/>
           ))}
-          {/* 여기 왜 {...sale}형태로 보냈지? */}
+
         </section>
     </div>
   );
