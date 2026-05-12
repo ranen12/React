@@ -3,6 +3,7 @@ import { useSearchParams } from 'next/navigation';
 import style from './searchbar.module.css'
 import { ChangeEvent, useState, KeyboardEvent} from 'react';
 import { useRouter} from 'next/navigation';
+//next/naviagation useRouter는 머가다르지
 
 export default function Searchbar() {
     const router = useRouter();
